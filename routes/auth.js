@@ -88,7 +88,7 @@ router.post("/login-user",async (req,res)=> {
         }
         //add jwt for persistent login
         const jwtSecretKey = process.env.JWT_SECRET_KEY
-        //expiration
+        //expirations
         const expiration = Math.floor(Date.now() / 1000)  + 60 * 60;
         //asign scope based on emailtype
         const userType= username.includes("codeimmersives.com") ? "admin" : "user"
@@ -100,7 +100,7 @@ router.post("/login-user",async (req,res)=> {
         }
         const token = jwt.sign({data,exp:expiration},jwtSecretKey)
         console.log('token for user on login',token)
-        console.log('data for user on login',data)
+        // console.log('data for user on login',data)
         res.json({success:true,token,userType})
         return;
     } catch (error) {
